@@ -63,13 +63,29 @@ const handleSubmit = async (e) => {
             const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
             const url = isLocal
             ? '/api'
-            : 'https://script.google.com/macros/s/AKfycby63ofUnFuIu33P9zioL38zwmwUL3SwQh9kX5WjzkME9SsyPUTxOLnTHSRm4zGs37Lxvg/exec';
+            : 'https://script.google.com/macros/s/AKfycbxxT_DeTnt-IcUi78NCVGdnp0NRcbB-ixs7CRRn4VegQ38_0QQ4s_rIT_7XaNzJZWX0nw/exec';
+
+        const formData = new URLSearchParams();
+            formData.append('date', form.date);
+            formData.append('amount', form.amount);
+            formData.append('category', form.category);
+            formData.append('description', form.description);
+            formData.append('paymentMethod', form.paymentMethod);
 
         const response = await fetch(`${url}`, {
             method: 'POST',
-            body: JSON.stringify(form),
-            headers: { 'Content-Type': 'application/json' }
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
         });
+
+        // const response = await fetch(`${url}`, {
+        //     method: 'POST',
+        //     body: JSON.stringify(form),
+        //     headers: { 'Content-Type': 'application/json' }
+
+        // });
       const result = await response.json();
       if (result.success) {
         alert('Gasto registrado exitosamente.');
