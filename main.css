@@ -11,16 +11,31 @@
   --color-boton: #5a1228;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 /* Estilos base */
 .app {
   background-color: var(--color-fondo);
   color: var(--color-texto);
-  height: 100vh;
+  min-height: 100vh;
+  padding: 16px;
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+}
+
+.app.dark {
+  background-color: #111;
+  color: #f1f1f1;
 }
 
 form{
